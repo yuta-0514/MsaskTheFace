@@ -1,11 +1,6 @@
-# Author: aqeelanwar
-# Created: 27 April,2020, 10:22 PM
-# Email: aqeel.anwar@gatech.edu
-
 import argparse
 import dlib
 from utils.aux_functions import *
-
 
 
 # Command-line input setup

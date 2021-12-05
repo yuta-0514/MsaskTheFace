@@ -190,19 +190,27 @@ if is_directory:
 
 # Process if the path was a file
 elif is_file:
-    print("Masking image file")
-    image_path = args.path
-    write_path = args.path.rsplit(".")[0]
-    if is_image(image_path):
-        # Proceed if file is image
-        # masked_images, mask, mask_binary_array, original_image
-        masked_image, mask, mask_binary_array, original_image = mask_image(
-            image_path, args
-        )
-        for i in range(len(mask)):
-            w_path = write_path + "_" + mask[i] + "." + args.path.rsplit(".")[1]
-            img = masked_image[i]
-            cv2.imwrite(w_path, img)
+   print("Masking image file")
+   image_path = args.path
+   write_path = args.path.rsplit(".")[0]
+   num = write_path.split("_")
+   count = int(num[-1])
+   if count%2==0 :
+       if is_image(image_path):
+           # Proceed if file is image
+           # masked_images, mask, mask_binary_array, original_image
+           masked_image, mask, mask_binary_array, original_image = mask_image(
+               image_path, args
+           )
+           for i in range(len(mask)):
+               w_path = write_path + '.' + args.path.rsplit(".")[1]
+               img = masked_image[i]
+               cv2.imwrite(w_path, img)
+       else:
+          write_path + args.path.rsplit(".")[1]
+          img = cv2.imread(args.path)
+          cv2.imrite(w_path, img)
+ 
 else:
-    print("Path is neither a valid file or a valid directory")
+   print("Path is neither a valid file or a valid directory")
 print("Processing Done")
